@@ -1,0 +1,135 @@
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% load humanize %}
+{% bootstrap_javascript %}
+{% load i18n %}
+{% load l10n %}
+{% load crispy_forms_tags %}
+{% get_current_language as language_code %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'index/css/main.css' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>{{name }} PACKAGE</title>
+  </head>
+  <body>
+<div class="container">
+  
+</div>
+<br>
+
+<div class="container">
+  <div class="col-sm-12">
+    <div class="card border border-warning">
+      <div class="card-body">
+        <h4 class="display-4">INVEST IN OUR <text class="text-success">{{name }}</text> PACKAGE</h4>
+<img src="/static/fortune/images/invest2.png" alt="Starter Package" class="centered"/>
+<br><p></p>
+        <p class="card-text">Please click on INVEST NOW to start your investment journey.</p>
+          <p><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+        INVEST NOW
+        </button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <style>
+.vl {
+  border-left: 6px solid green;
+  height: 30px;
+}
+</style>
+
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+                      <div class="modal-header">
+                    <h5 class="modal-title text-primary">{{name }} PACKAGE</h5>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal"></button> -->
+                </div>
+                <div class="modal-body">
+                    <p>Open an Investment and earn daily income. Creating wealth has never been this easy.</p>
+                    <div class="container">
+                      <h2 class="text-warning text-decoration">{{name }} PACKAGE DETAILS</h2>
+                                           <hr class="hr-success" />
+
+            <div class="row">
+            <P>
+              <text class="text-primary">PACKAGE NAME &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <div class="vl"></div> &nbsp;&nbsp;
+              </text> {{name }} 
+            </P>
+          </div>
+
+          <div class="row">
+
+            <P>
+              <text class="text-primary">INVESTMENT AMOUNT &nbsp;&nbsp;&nbsp;
+                <div class="vl"></div> &nbsp;&nbsp;
+              </text> {{amount|intcomma  }} 
+            </P>
+          </div>
+
+
+          <div class="row">
+
+            <P>
+              <text class="text-primary">INVESTMENT PERIOD &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="vl"></div> &nbsp;&nbsp;
+              </text> {{investment_period }} Days
+            </P>
+          </div>
+
+          <div class="row">
+            <P>
+              <text class="text-primary">PERCENTAGE RETURN &nbsp;&nbsp;&nbsp;
+                <div class="vl"></div> &nbsp;&nbsp;
+              </text> {{percentage_return }} % Daily
+            </P>
+          </div>
+
+ <!--            <P>
+              <text class="text-primary">TOTAL RETURN &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: &nbsp;&nbsp;
+              </text> {{name }} 
+            </P> -->
+<div class="row">
+            <P>
+              <text class="text-primary">EXPECTED AMOUNT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <div class="vl"></div> &nbsp;&nbsp;
+              </text> {{expected_amount|intcomma }} 
+            </p>   
+            </div>
+          </div>
+                    <p class="text-secondary"><small>Click NEXT to open your investment.Else, click cancel.</small></p>
+                </div>
+                <div class="modal-footer">
+                <a href="{% url 'fortune:summary' %}">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    Cancel</button>
+                </a>
+                <a href="{% url 'fortune:mpesa' %}">
+                    <button type="button" data-toggle="modal" class="btn btn-primary" data-target="#myModal">NEXT</button>
+                </a>
+                </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

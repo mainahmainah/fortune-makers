@@ -1,0 +1,52 @@
+{% load i18n %}
+
+{% block content %}      
+
+{% load crispy_forms_tags %}
+<link href="/static/fortune/css/bootstrap.min.css" rel="stylesheet" media="all">
+
+<br>
+
+    {% block title %}
+        <title>Login</title>
+    {% endblock %}
+
+<div class="container-fluid">
+    
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                <div class="alert alert-success" role="alert">{{ message|escape|safe }}</div>
+            {% elif message.tags == 'error' %}
+                <div class="alert alert-danger" role="alert">{{ message|escape|safe }}</div>
+            {% elif message.tags == 'warning' %}
+                <div class="alert alert-warning" role="alert">{{ message|escape|safe }}</div>
+            {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 border border-success">
+            <h1 class="text-warning text-center">{% trans 'Log In' %}</h1>
+            <hr style="color:#198754; background-color:#198754; height:1px; border:none;">
+              <form method="POST">
+                {% csrf_token %}
+                {{ login_form|crispy }}
+                <p></p>
+                    
+                <button class="btn btn-primary" type="submit">Login</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/restore/password">Forgot Password?</a>
+              </form>
+              <p class="text-center">Don't have an account? <a href="{% url 'fortune:register' %}">Create an account</a>.</p>
+        </div>
+
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<hr>
+{% endblock %}

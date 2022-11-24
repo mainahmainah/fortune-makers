@@ -1,0 +1,63 @@
+{% extends 'fortune/summary.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% load humanize %}
+{% bootstrap_javascript %}
+{% load i18n %}
+{% load l10n %}
+{% load crispy_forms_tags %}
+{% get_current_language as language_code %}
+
+    {% block title %}
+    <title>My Invoices</title>
+    {% endblock %}
+
+
+    
+
+    {% block h2-title %}
+    <h3 class="title-1">My Invoices</h3>
+    {% endblock %}
+
+    {% block main-content %}
+    {% bootstrap_messages %}
+<hr>
+<div class="col-md-12" class="pagination">
+<table class="table table-striped table-responsive">
+<table class="table table-borderless table-responsive table-striped table-earning">
+                      
+                  <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Package</th>
+                        <th scope="col">Mpesa Code</th>
+                        <th scope="col">Date Paid</th>
+                        <th scope="col">Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for record in total_inv %}
+                    <tr>
+                        <td scope="row">{{ forloop.counter }}</td>
+                        <td>{{ record.package }}</td>                        
+                        <td>{{ record.mpesa_code }}</td>
+                        <td>{{ record.created_date }}</td>
+                        <td>{{ record.amount }}</td>
+                        <!-- <td>{{ record.status }}</td> -->
+                    </tr>
+                {% endfor %}
+
+                    <tr>
+                      <td class="table-success"><B>TOTAL</B></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      <td class="table-success"><B>KSH: {{ total_invoices|intcomma }} </B></td>
+                    </tr>
+
+                  </tbody>
+                  
+                </table>
+</div>
+{% endblock %}

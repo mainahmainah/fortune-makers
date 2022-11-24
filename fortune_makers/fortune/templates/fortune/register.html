@@ -1,0 +1,49 @@
+{% load i18n %}
+{% load bootstrap4 %}
+
+{% block content %}      
+
+{% load crispy_forms_tags %}
+
+
+    <!-- Bootstrap CSS-->
+    <link href="/static/fortune/css/bootstrap.min.css" rel="stylesheet" media="all">
+
+<br>
+
+    {% block title %}
+        <title>Register</title>
+    {% endblock %}
+
+
+<div class="container-fluid">
+
+{% bootstrap_messages %}
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 border border-success">
+            <hr style="color:#198754; background-color:#198754; height:1px; border:none;">
+            <h1 class="text-warning text-center">{% trans 'Sign Up' %}</h1>
+            <!-- <hr> -->
+            <hr style="color:#198754; background-color:#198754; height:1px; border:none;">
+              <form method="POST">
+                {% csrf_token %}
+                {{ register_form|crispy }}
+                <p></p>
+                    
+                <button class="btn btn-primary">{% trans 'Register' %}</button>
+                <p class="text-center">If you already have an account, <a href="{% url 'fortune:login' %}">login</a> instead.</p>
+              </form>
+        </div>
+
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<hr>
+
+{% endblock %}
+ 
+{% block social-media %}
+{% endblock %}

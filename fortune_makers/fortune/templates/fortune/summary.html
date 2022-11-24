@@ -1,0 +1,530 @@
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% load humanize %}
+{% bootstrap_javascript %}
+{% load i18n %}
+{% load l10n %}
+{% load crispy_forms_tags %}
+{% get_current_language as language_code %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    {% block title %}
+    <title>Dashboard</title>
+    {% endblock %}
+
+    {% block css %}
+    <!-- Bootstrap CSS-->
+    <link rel="icon" type="image/x-icon" href="/static/fortune/images/favicon.png">
+    <link href="/static/fortune/css/font-face.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+
+    <link href="/static/fortune/css/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/animsition.min.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/animate.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/slick.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/select2.min.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/theme.css" rel="stylesheet" media="all">
+    <link href="/static/fortune/css/dialog.css" rel="stylesheet" media="all">
+    {% endblock %}
+
+</head>
+
+<body class="animsition">
+    {% bootstrap_messages %}
+    <div class="page-wrapper">
+        <!-- HEADER MOBILE-->
+        <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <a href="#">
+                            <img src="/static/fortune/images/wealth.png" alt="Fortune Makers" /> Fortune Makers
+                        </a>
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <nav class="navbar-mobile">
+                <div class="container-fluid">
+                    <ul class="navbar-mobile__list list-unstyled">
+                        <li>
+                            <a href="{% url 'fortune:homepage' %}">
+                                <i class="fas fa-home"></i>Home</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'fortune:summary' %}">
+                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+
+                        <li>
+                        <a href="{% url 'fortune:homepage' %}">
+                                <i class="fas fa-chart-bar"></i>Packages</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'fortune:wallet' %}">
+                                <i class="fas fa-copy"></i>My Wallet</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'fortune:my_investments' %}">
+                                <i class="fas fa-copy"></i>My Investments</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'fortune:my_investments' %}">
+                                <i class="fas fa-book"></i>My Invoices</a>
+                        </li>
+
+
+                        <li>
+                            <a href="{% url 'fortune:my_referral' %}">
+                                <i class="fas fa-book"></i>My Referral</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'fortune:logout' %}">
+                                <i class="fas fa-sign-out-alt"></i>Logout</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- END HEADER MOBILE-->
+
+        <!-- MENU SIDEBAR-->
+        <aside class="menu-sidebar d-none d-lg-block">
+            <div class="logo">
+                <a href="#">
+                    <!-- 179x52 -->
+                    <img src="/static/fortune/images/wealth.png" alt="Fortune Makers" /> Fortune Makers
+                </a>
+            </div>
+            <div class="menu-sidebar__content js-scrollbar1">
+                <nav class="navbar-sidebar">
+                    <ul class="list-unstyled navbar__list">
+
+                        <li>
+                            <a href="{% url 'fortune:homepage' %}">
+                                <i class="fas fa-home"></i>Home</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'fortune:summary' %}">
+                            <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                        </li>
+                        <li>
+                        <a href="{% url 'fortune:homepage' %}">
+                                <i class="fas fa-table"></i>Packages</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'fortune:wallet' %}">
+                                <i class="fas fa-copy"></i>My Wallet</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'fortune:my_investments' %}">
+                                <i class="fas fa-copy"></i>My Investments</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'fortune:my_invoices' %}">
+                                <i class="fas fa-book"></i>My Invoices</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'fortune:my_referral' %}">
+                                <i class="fas fa-book"></i>My Referral</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'fortune:logout' %}">
+                                <i class="fas fa-sign-out-alt"></i>Logout</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <!-- END MENU SIDEBAR-->
+
+        <!-- PAGE CONTAINER-->
+        <div class="page-container">
+            <!-- HEADER DESKTOP-->
+            <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                            <form class="form-header" action="" method="POST">
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
+                                <button class="au-btn--submit" type="submit">
+                                    <i class="zmdi zmdi-search"></i>
+                                </button>
+                            </form>
+                            <div class="header-button">
+                                <div class="noti-wrap">
+                                    <div class="noti__item js-item-menu">
+                                        <i class="zmdi zmdi-comment-more"></i>
+                                        <span class="quantity">1</span>
+                                        <div class="mess-dropdown js-dropdown">
+                                            <div class="mess__title">
+                                                <p>You have 2 news message</p>
+                                            </div>
+                                            <div class="mess__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno" />
+                                                </div>
+                                                <div class="content">
+                                                    <h6>Michelle Moreno</h6>
+                                                    <p>Have sent a photo</p>
+                                                    <span class="time">3 min ago</span>
+                                                </div>
+                                            </div>
+                                            <div class="mess__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="images/icon/avatar-04.jpg" alt="Diane Myers" />
+                                                </div>
+                                                <div class="content">
+                                                    <h6>Diane Myers</h6>
+                                                    <p>You are now connected on message</p>
+                                                    <span class="time">Yesterday</span>
+                                                </div>
+                                            </div>
+                                            <div class="mess__footer">
+                                                <a href="#">View all messages</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="noti__item js-item-menu">
+                                        <i class="zmdi zmdi-email"></i>
+                                        <span class="quantity">1</span>
+                                        <div class="email-dropdown js-dropdown">
+                                            <div class="email__title">
+                                                <p>You have 3 New Emails</p>
+                                            </div>
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>Meeting about new dashboard...</p>
+                                                    <span>Cynthia Harvey, 3 min ago</span>
+                                                </div>
+                                            </div>
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>Meeting about new dashboard...</p>
+                                                    <span>Cynthia Harvey, Yesterday</span>
+                                                </div>
+                                            </div>
+                                            <div class="email__item">
+                                                <div class="image img-cir img-40">
+                                                    <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey" />
+                                                </div>
+                                                <div class="content">
+                                                    <p>Meeting about new dashboard...</p>
+                                                    <span>Cynthia Harvey, April 12,,2018</span>
+                                                </div>
+                                            </div>
+                                            <div class="email__footer">
+                                                <a href="#">See all emails</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="noti__item js-item-menu">
+                                        <i class="zmdi zmdi-notifications"></i>
+                                        <span class="quantity">3</span>
+                                        <div class="notifi-dropdown js-dropdown">
+                                            <div class="notifi__title">
+                                                <p>You have 3 Notifications</p>
+                                            </div>
+                                            <div class="notifi__item">
+                                                <div class="bg-c1 img-cir img-40">
+                                                    <i class="zmdi zmdi-email-open"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <p>You got a email notification</p>
+                                                    <span class="date">April 12, 2018 06:50</span>
+                                                </div>
+                                            </div>
+                                            <div class="notifi__item">
+                                                <div class="bg-c2 img-cir img-40">
+                                                    <i class="zmdi zmdi-account-box"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <p>Your account has been blocked</p>
+                                                    <span class="date">April 12, 2018 06:50</span>
+                                                </div>
+                                            </div>
+                                            <div class="notifi__item">
+                                                <div class="bg-c3 img-cir img-40">
+                                                    <i class="zmdi zmdi-file-text"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <p>You got a new file</p>
+                                                    <span class="date">April 12, 2018 06:50</span>
+                                                </div>
+                                            </div>
+                                            <div class="notifi__footer">
+                                                <a href="#">All notifications</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            <style type="text/css">
+                                .logged-in {
+                                  color: green;
+                                }
+                            </style>
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                    <div class="profile-image">
+                    <i class="fa fa-user-circle"></i>
+                            <a href="#">
+                            <span class="glyphicon glyphicon-user"></span>
+                            </a>
+                            <span class="logged-in">● online</span>
+                            <p>
+                            {{user}}
+                            </p>
+
+                </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            
+            <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+
+                                    {% block h2-title %}
+                                    <h2 class="title-1">Dashboard</h2><h5>Invite Code: {{my_ref_code_url}} </h5>
+                                    {% endblock %}
+
+                                    
+<!--                                     <button class="au-btn au-btn-icon au-btn--blue">
+                                        <i class="zmdi zmdi-plus"></i>add item</button> -->
+                                </div>
+                            </div>
+                        </div>
+
+                        {% block main-content %}
+                        <hr>
+                        <div class="row m-t-25">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <!-- <i class="zmdi zmdi-account-o"></i> -->
+                                            </div>
+                                            <div class="text">
+                                                <h2>KSH: {{ total_invoices|intcomma }}</h2>
+                                                <span>My Investments</span>
+                                                <h5>(Active & Pending)</h5>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart1"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <!-- <i class="zmdi zmdi-shopping-cart"></i> -->
+                                            </div>
+                                            <div class="text">
+                                                <h2>KSH: {{ daily_earnings|intcomma }}</h2>
+                                                <span>My Daily Earnings</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart2"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c3">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <!-- <i class="zmdi zmdi-calendar-note"></i> -->
+                                            </div>
+                                            <div class="text">
+                                                <h2>KSH: {{ total_earnings|intcomma }}</h2>
+                                                <span>My Total Earnings</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart3"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c4">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <!-- <i class="zmdi zmdi-money"></i> -->
+                                            </div>
+                                            <div class="text">
+                                                <h2>KSH: {{ total_earnings|intcomma }}</h2>
+                                                <span>Withdrawable Balance</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart4"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="au-card recent-report">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2">recent reports</h3>
+                                        <div class="chart-info">
+                                            <div class="chart-info__left">
+                                                <div class="chart-note">
+                                                    <span class="dot dot--blue"></span>
+                                                    <span>My Investments</span>
+                                                </div>
+                                                <div class="chart-note mr-0">
+                                                    <span class="dot dot--green"></span>
+                                                    <span>Total Earnings</span>
+                                                </div>
+                                            </div>
+                                            <div class="chart-info__right">
+                                                <div class="chart-statis">
+                                                    <span class="index incre">
+                                                        <i class="zmdi zmdi-long-arrow-up"></i>{{ total_invoices }}</span>
+                                                    <span class="label">My Investments</span>
+                                                </div>
+                                                <div class="chart-statis mr-0">
+                                                    <span class="index decre">
+                                                        <i class="zmdi zmdi-long-arrow-down"></i>{{ total_earnings }}</span>
+                                                    <span class="label">Total Earnings</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="recent-report__chart">
+                                            <canvas id="recent-rep-chart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="au-card chart-percent-card">
+                                    <div class="au-card-inner">
+                                        <h3 class="title-2 tm-b-5">Recent Reports</h3>
+                                        <div class="row no-gutters">
+                                            <div class="col-xl-6">
+                                                <div class="chart-note-wrap">
+                                                    <div class="chart-note mr-0 d-block">
+                                                        <span class="dot dot--blue"></span>
+                                                        <span>My Investments</span>
+                                                    </div>
+                                                    <div class="chart-note mr-0 d-block">
+                                                        <span class="dot dot--red"></span>
+                                                        <span>Total Earnings</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6">
+                                                <div class="percent-chart">
+                                                    <canvas id="percent-chart"></canvas>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2022 <a href="https://fortunemakers.co.ke">Fortune Makers</a>. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endblock %}
+                </div>
+            </div>
+            
+            <!-- END MAIN CONTENT-->
+            <!-- END PAGE CONTAINER-->
+        </div>
+
+    </div>
+    <!-- Jquery JS-->
+    {% block js %}
+    <script src="/static/fortune/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/fortune/js/popper.min.js"></script>
+    <script src="/static/fortune/js/bootstrap.min.js"></script>
+    <script src="/static/fortune/js/slick.min.js"></script>
+    <script src="/static/fortune/js/wow.min.js"></script>
+    <script src="/static/fortune/js/animsition.min.js"></script>
+    <script src="/static/fortune/js/bootstrap-progressbar.min.js"></script>
+    
+    <script src="/static/fortune/js/jquery.waypoints.min.js"></script>
+    <script src="/static/fortune/js/jquery.counterup.min.js"></script>
+    <script src="/static/fortune/js/circle-progress.min.js"></script>
+    
+    <script src="/static/fortune/js/perfect-scrollbar.js"></script>
+    <script src="/static/fortune/js/Chart.bundle.min.js"></script>
+    <script src="/static/fortune/js/select2.min.js"></script>
+    <script src="/static/fortune/js/main.js"></script>
+    <script src="/static/fortune/js/dialog.js"></script>
+    {% endblock %}
+
+</body>
+
+</html>
+<!-- end document-->

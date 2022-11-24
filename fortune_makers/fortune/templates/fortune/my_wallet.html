@@ -1,0 +1,182 @@
+{% extends 'fortune/summary.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% load humanize %}
+{% bootstrap_javascript %}
+{% load i18n %}
+{% load l10n %}
+{% load crispy_forms_tags %}
+{% get_current_language as language_code %}
+
+    {% block title %}
+    <title>My Wallet</title>
+    {% endblock %}
+
+
+    
+
+    {% block h2-title %}
+    <h3 class="title-1">My Wallet</h3>
+    {% endblock %}
+
+    {% block main-content %}
+    {% bootstrap_messages %}
+
+<hr>
+    <div class="row m-t-25">
+        <div class="col-sm-6 col-lg-4">
+            <div class="overview-item overview-item--c1">
+                <div class="overview__inner">
+                    <div class="overview-box clearfix">
+                        <div class="text">
+                            <h4>KSH: {{ wallet_balance|intcomma }}</h4>
+                            <h5 class="mb-0 font-weight-medium text-warning">My Account Balance</h5>
+                        </div>
+                                                    <br> <br>
+                        <div class="border-top my-3"></div>
+
+                        <div class="text">
+                            <h4>KSH: {{ total_users_fees|intcomma }}</h4>
+                            <h5 class="mb-0 font-weight-medium text-warning">Total Fees</h5>
+                        </div>
+                                                    <br> <br>
+                        <div class="border-top my-3"></div>
+
+                        <div class="text">
+                            <!-- <h4>KSH: {{ active_profit|intcomma }}</h4> -->
+                            <h5 class="mb-0 font-weight-medium text-warning">Financial Position</h5>
+                        </div>
+                        <div class="border-top my-3"></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-lg-4">
+            <div class="overview-item overview-item--c3">
+                <div class="overview__inner">
+                    <div class="overview-box clearfix">
+                        <div class="text">
+                            <h4>POINTS: {{ total_commission|intcomma }}</h4>
+                            <h5 class="mb-0 font-weight-medium text-warning">Referral Balance</h5>
+                        </div>
+                                                    <br> <br>
+                        <div class="border-top my-3"></div>
+
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form3|crispy }}
+                    <input type="submit" class="btn btn-primary" value="Convert to Cash" id="btnShowMsg" onClick="showMessage()"/>
+                            </form>
+                                                    <br> <br>
+                        <div class="border-top my-3"></div>
+
+                        <div class="text">
+                            <!-- <h4>KSH: {{ active_profit|intcomma }}</h4> -->
+                            <h5 class="mb-0 font-weight-medium text-warning">Financial Position</h5>
+                        </div>
+                        <div class="border-top my-3"></div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-sm-6 col-lg-4">
+            <div class="overview-item overview-item--c4">
+                <div class="overview__inner">
+                    <div class="overview-box clearfix">
+                        <div class="text">
+                            <h4>KSH: {{ withdrawable_balance|intcomma }}</h4>
+                            <h5 class="mb-0 font-weight-medium text-primary">Withdrawable Balance</h5>
+                            <div class="border-top my-3"></div>
+
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <br>
+                                <input type="submit" class="btn btn-primary" value="Withdraw"/>
+                            </form>
+                            <br>
+
+                            <!-- <input type="submit" class="btn btn-primary" value="Withdraw"/> -->
+
+<!--                             <button type="button" class="btn btn-primary btn-rounded" onclick="customAlert.alert('5% Withdrawal fee will be deducted. Continue?','Heads Up!')">Withdraw
+                            </button> -->
+
+
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+            <script type="text/javascript">
+            function showMessage() {
+                alert("Your points balance is too low to convert into cash. Please invite more people.");
+            }
+        </script>
+
+
+
+<hr>
+              <div class="col-12">
+                <div class="page-header">
+                  <!-- <h4 class="page-title">Change Password</h4> -->
+                  <h4 class="table-warning text-danger">My Withdrawal History</h4>
+                </div>
+              </div>
+
+        <div class="col-md-12" class="pagination">
+        <table class="table table-striped table-responsive">
+                      
+                  <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Fee</th>
+                        <th scope="col">Status</th>
+                        <th>
+                        </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for record in total_inv %}
+
+                    <tr>
+                        <td scope="row">{{ forloop.counter }}</td>
+                        <td>{{ record.phn_number }}</td>
+                        <td>{{ record.created_date }}</td>
+                        <td>{{ record.amount }}</td>
+                        <td>{{ record.fee }}</td>
+                        {% if record.status is True %}
+                        <td bgcolor="green">{{ record.status|yesno:"Success, Pending" }}</td>
+                         {% else %}                       
+                          <td bgcolor="yellow">{{ record.status|yesno:"Success, Pending" }}</td>
+                         {% endif %}
+                    </tr>
+                {% endfor %}
+
+                  </tbody>
+                  
+                </table>
+            </div>
+
+    </div></div></div>
+    
+    {% endblock %}
